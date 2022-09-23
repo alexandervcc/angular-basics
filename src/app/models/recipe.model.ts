@@ -9,3 +9,9 @@ export class Recipe {
     this.imagePath = image;
   }
 }
+
+export interface IRecipe {
+  name: string;
+  description: string;
+  imagePath: string;
+}
