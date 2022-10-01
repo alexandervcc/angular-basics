@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 
@@ -10,7 +10,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class RecipeEditComponent implements OnInit {
   form: FormGroup = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', Validators.required),
     imagePath: new FormControl(''),
     description: new FormControl(''),
     ingredients: new FormArray([]),
@@ -35,6 +35,18 @@ export class RecipeEditComponent implements OnInit {
     console.log(this.form);
   }
 
+  onAddIngredient() {
+    (this.form.get('ingredients') as FormArray).push(
+      new FormGroup({
+        name: new FormControl(null, Validators.required),
+        amount: new FormControl(null, [
+          Validators.required,
+          Validators.pattern(/^[1-9]+[0-9]*$/),
+        ]),
+      })
+    );
+  }
+
   get controls() {
     return (this.form.get('ingredients') as FormArray).controls;
   }
@@ -47,8 +59,11 @@ export class RecipeEditComponent implements OnInit {
         recipe.ingredients.forEach((ing) => {
           arrayIngredients.push(
             new FormGroup({
-              name: new FormControl(ing.name),
-              amount: new FormControl(ing.amount),
+              name: new FormControl(ing.name, Validators.required),
+              amount: new FormControl(ing.amount, [
+                Validators.required,
+                Validators.pattern(/^[1-9]+[0-9]*$/),
+              ]),
             })
           );
         });
@@ -56,9 +71,9 @@ export class RecipeEditComponent implements OnInit {
 
       const formIngredients = new FormArray(arrayIngredients);
       this.form = new FormGroup({
-        name: new FormControl(recipe.name),
-        imagePath: new FormControl(recipe.imagePath),
-        description: new FormControl(recipe.description),
+        name: new FormControl(recipe.name, Validators.required),
+        imagePath: new FormControl(recipe.imagePath, Validators.required),
+        description: new FormControl(recipe.description, Validators.required),
         ingredients: formIngredients,
       });
     }
