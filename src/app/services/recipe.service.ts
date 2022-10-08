@@ -7,7 +7,7 @@ import { ShoppingListService } from './shopping-list.service';
 @Injectable()
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
-  private recipes: Recipe[] = [
+  /* private recipes: Recipe[] = [
     new Recipe(
       'Mijotron1',
       'XD1',
@@ -20,7 +20,9 @@ export class RecipeService {
       'https://image.shutterstock.com/image-photo/bank-blocks-linked-money-by-600w-1937886058.jpg',
       [new Ingredient('Pelo', 1), new Ingredient('Orejas', 2)]
     ),
-  ];
+  ]; */
+
+  private recipes: Recipe[] = [];
 
   constructor(private slService: ShoppingListService) {}
 
