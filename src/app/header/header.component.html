@@ -7,6 +7,9 @@
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
         <li routerLinkActive="active">
+          <a routerLink="/auth">Auth</a>
+        </li>
+        <li routerLinkActive="active">
           <a routerLink="/shopping-list">Shopping List</a>
         </li>
       </ul>
@@ -20,7 +23,7 @@
             <li style="cursor: pointer" (click)="onSaveData()">
               <a>Save Data</a>
             </li>
-            <li style="cursor: pointer">
+            <li style="cursor: pointer" (click)="onFetchData()">
               <a>Fetch data</a>
             </li>
           </ul>
