@@ -17,8 +17,8 @@ export class AuthService {
       .post<AuthResData>(
         `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.API_KEY}`,
         {
-          email,
-          password,
+          email: email,
+          password: password,
           returnSecureToken: true,
         }
       )
@@ -70,10 +70,12 @@ export class AuthService {
   }
 
   private handleError(err: HttpErrorResponse) {
+    console.log('error: ', err);
     let errorMessage = 'Error: unknown error';
     if (!err.error || !err.error.error) {
       return throwError(errorMessage);
     }
+    console.log('errorcode: ', err.error.error.message);
     switch (err.error.error.message) {
       case 'EMAIL_EXISTS':
         errorMessage = 'Error: email already in use.';
