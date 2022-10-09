@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import { AuthResData } from './AuthResData.mode';
+import { AuthResData } from '../models/AuthResData.model';
 
 @Component({
   selector: 'app-auth',
