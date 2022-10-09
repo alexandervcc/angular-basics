@@ -16,7 +16,7 @@ import { ShoppingListService } from './services/shopping-list.service';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './services/recipe.service';
-import { DataStorageService } from './shared/directives/data-storage.service';
+import { DataStorageService } from './shared/data-storage.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeResolverService } from './recipes/recipes-resolver.service';
 import { AuthComponent } from './auth/auth.component';
