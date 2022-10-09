@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import { BehaviorSubject,  throwError } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { AuthResData } from '../models/AuthResData.model';
 import { User } from '../models/User.model';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private API_KEY = 'AIzaSyDPY5OBG7GJwNn68i-HSTtCvkbNn2tcFo4';
-  
+
   user = new BehaviorSubject<User>(new User());
 
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signUp(email: string, password: string) {
     return this.http
@@ -58,6 +58,11 @@ export class AuthService {
           );
         })
       );
+  }
+
+  logOut() {
+    this.user.next(new User());
+    this.router.navigate(['/auth']);
   }
 
   private handleAuth(
