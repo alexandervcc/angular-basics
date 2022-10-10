@@ -24,15 +24,7 @@ import { RecipesComponent } from './recipes.component';
     CommonModule,
     ReactiveFormsModule,
     RecipesRoutingModule,
-  ],
-  exports: [
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    RecipeStartComponent,
-    RecipeEditComponent,
-  ],
+  ]
 })
 export class RecipesModule {}
 
@@ -50,4 +42,9 @@ export class RecipesModule {}
 
   - the custom module should have the custom RoutingModule, and is not necessary to
     add again into the routing-app module
+      - the submodule also has to have the Components used in the sub-route module
+
+  - if the routing is embedded into the module, now is not necesary to export the 
+    components anymore, as these are not used outside this file
+
 */
