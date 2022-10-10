@@ -11,6 +11,7 @@ export class AuthService {
   private API_KEY = 'AIzaSyDPY5OBG7GJwNn68i-HSTtCvkbNn2tcFo4';
 
   user = new BehaviorSubject<User>(new User());
+  private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -62,8 +63,18 @@ export class AuthService {
 
   logOut() {
     this.user.next(new User());
+    localStorage.removeItem('userData');
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+      this.tokenExpirationTimer = null;
+    }
     this.router.navigate(['/auth']);
-    localStorage.removeItem("userData")
+  }
+
+  autoLogOut(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logOut();
+    }, expirationDuration);
   }
 
   autoLogin() {
@@ -84,8 +95,12 @@ export class AuthService {
       new Date(userData._tokenExpirationDate)
     );
     if (loadedUser.token) {
-      console.log("autologin success")
       this.user.next(loadedUser);
+
+      const expirationTime =
+        new Date(userData._tokenExpirationDate).getTime() -
+        new Date().getTime();
+      this.autoLogOut(expirationTime);
     }
   }
 
@@ -98,6 +113,9 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const newUser = new User(email, userId, token, expirationDate);
     localStorage.setItem('userData', JSON.stringify(newUser));
+
+    this.autoLogOut(expiresIn * 1000);
+
     this.user.next(newUser);
   }
 
