@@ -23,6 +23,7 @@ import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spiner';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceHolderDirective } from './shared/placeholder/placeholder.directive';
 
 @NgModule({
   declarations: [
@@ -34,12 +35,14 @@ import { AlertComponent } from './shared/alert/alert.component';
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
-    AlertComponent
+    AlertComponent,
+
+    DropdownDirective,
+    PlaceHolderDirective,
   ],
   imports: [
     HttpClientModule,
@@ -60,9 +63,14 @@ import { AlertComponent } from './shared/alert/alert.component';
     },
   ],
   bootstrap: [AppComponent],
+  //entryComponents: [AlertComponent],
 })
 export class AppModule {}
 
 /*
   - here the interceptos is added with an special configuration
- */
+
+  - entryComponents:
+    - components that will be created without selectors
+    - this can be omitted if Angular ver>=9
+*/
