@@ -36,8 +36,8 @@ Modules
 - so we need to export modules, to use them on others modules
 
 
-GETTING STARTED WITH FEATURE MODULES
+SHARED MODULES
 ---------------------------------------------------------------------------------
-- we can split the model into separate modules: feature modules
-- 
+- module to put shared components that are used across diferent modules
+
 

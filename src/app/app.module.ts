@@ -18,18 +18,10 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceHolderDirective } from './shared/placeholder/placeholder.directive';
 import { RecipesModule } from './recipes/Recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    AuthComponent,
-    LoadingSpinnerComponent,
-    AlertComponent,
-
-    DropdownDirective,
-    PlaceHolderDirective,
-  ],
+  declarations: [AppComponent, HeaderComponent, AuthComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -37,7 +29,8 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
     FormsModule,
     ReactiveFormsModule,
     RecipesModule,
-    ShoppingListModule
+    ShoppingListModule,
+    SharedModule
   ],
   providers: [
     RecipeResolverService,
