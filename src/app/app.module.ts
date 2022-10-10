@@ -8,24 +8,24 @@ import { HeaderComponent } from './header/header.component';
 import { RecipeService } from './services/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthComponent } from './auth/auth.component';
 import { RecipesModule } from './recipes/Recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, AuthComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+
     RecipesModule,
     ShoppingListModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    AuthModule
   ],
   providers: [
     RecipeService,
