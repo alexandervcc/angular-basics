@@ -1,0 +1,43 @@
+MODULES
+Modules
+- Way to bundle Angular Blocks together
+- Angular doesnt scan the files, so you have to do it manually
+- An angular must have at least one module
+
+ANALIZING APP MODULES
+---------------------------------------------------------------------------------
+AppModule
+- declarations
+	- list of custom elements for the app, to use in the app
+- imports
+	- allow to use other modules into the app
+	- also allows to use little parts as a whole
+		- instead of adding them as declarations for each one
+- providers
+	- services we wanna provide
+	- any service to inject, need to be provided
+- booostrap
+	- for starting the app
+	- which component will the root for index.html
+	- usually just one
+- entryComponents
+	- for components created in code
+
+
+
+AppRoutingModule
+- Custom module for the route configuration
+- the little custom module, allow to make them cohesive
+- the custom module must be exported to be used
+
+Modules
+- every module works on its own, dont communicate with each other
+- declarations only work on the module where is added, not on others
+- so we need to export modules, to use them on others modules
+
+
+GETTING STARTED WITH FEATURE MODULES
+---------------------------------------------------------------------------------
+- we can split the model into separate modules: feature modules
+- 
+
