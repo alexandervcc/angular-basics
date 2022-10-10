@@ -5,11 +5,10 @@ import { BehaviorSubject, throwError } from 'rxjs';
 import { AuthResData } from '../models/AuthResData.model';
 import { User } from '../models/User.model';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private API_KEY = 'AIzaSyDPY5OBG7GJwNn68i-HSTtCvkbNn2tcFo4';
-
   user = new BehaviorSubject<User>(new User());
   private tokenExpirationTimer: any;
 
@@ -18,7 +17,7 @@ export class AuthService {
   signUp(email: string, password: string) {
     return this.http
       .post<AuthResData>(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.API_KEY}`,
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.API_KEY}`,
         {
           email: email,
           password: password,
@@ -41,7 +40,7 @@ export class AuthService {
   logIn(email: string, password: string) {
     return this.http
       .post<AuthResData>(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.API_KEY}`,
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.API_KEY}`,
         {
           email,
           password,
