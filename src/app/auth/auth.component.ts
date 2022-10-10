@@ -40,7 +40,7 @@ export class AuthComponent implements OnInit {
       (resData) => {
         console.log('authRes: ', resData);
         this.isLoading = false;
-        this.router.navigate(['/recipes'])
+        this.router.navigate(['/recipes']);
       },
       (errorMessage) => {
         this.error = errorMessage;
@@ -49,5 +49,9 @@ export class AuthComponent implements OnInit {
     );
     authObservable.subscribe();
     authForm.reset();
+  }
+
+  onHandleModal() {
+    this.error = undefined;
   }
 }
