@@ -1,54 +1,51 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { DropdownDirective } from './shared/directives/dropdown.directive';
-import { ShoppingListService } from './services/shopping-list.service';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './services/recipe.service';
-import { DataStorageService } from './shared/directives/data-storage.service';
+import { DataStorageService } from './shared/data-storage.service';
 import { HttpClientModule } from '@angular/common/http';
-import { RecipeResolverService } from './recipes/recipes-resolver.service';
-import { AuthComponent } from './auth/auth.component';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    AuthComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+
+    ShoppingListModule,
+    SharedModule,
+    CoreModule,
+    AuthModule
   ],
   providers: [
-    RecipeResolverService,
-    ShoppingListService,
     RecipeService,
     DataStorageService,
+    
   ],
   bootstrap: [AppComponent],
+  //entryComponents: [AlertComponent],
 })
 export class AppModule {}
+
+/*
+  - here the interceptos is added with an special configuration
+
+  - entryComponents:
+    - components that will be created without selectors
+    - this can be omitted if Angular ver>=9
+   
+  - at imports: add the custom modules
+
+  - coreModule: one containing services, MUST be at declarations, not Providers
+
+  - for lazy loading to work, in the app module, remove the import
+    for the modules to use LazyLoading
+
+*/

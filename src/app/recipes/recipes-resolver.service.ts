@@ -7,7 +7,7 @@ import {
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/recipe.model';
 import { RecipeService } from '../services/recipe.service';
-import { DataStorageService } from '../shared/directives/data-storage.service';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Injectable()
 export class RecipeResolverService implements Resolve<Recipe[]> {

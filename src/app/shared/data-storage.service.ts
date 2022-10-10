@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { Recipe } from 'src/app/models/recipe.model';
-import { map, tap } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class DataStorageService {
@@ -33,9 +33,14 @@ export class DataStorageService {
           }));
         }),
         tap((resData) => {
-          console.log("data: ",resData)
+          console.log('data: ', resData);
           this.recipeService.setRecipes(resData);
         })
       );
   }
 }
+
+//take: get just one value, then unsubscribe
+//when you dont want an ongoing subscription
+//exhaustMap: wait for the first observable to complete,
+// then return a new to replace the previous one
