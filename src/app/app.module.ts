@@ -44,4 +44,8 @@ export class AppModule {}
   - at imports: add the custom modules
 
   - coreModule: one containing services, MUST be at declarations, not Providers
+
+  - for lazy loading to work, in the app module, remove the import
+    for the modules to use LazyLoading
+
 */
