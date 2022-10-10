@@ -41,3 +41,11 @@ SHARED MODULES
 - module to put shared components that are used across diferent modules
 
 
+CORE MODULE
+---------------------------------------------------------------------------------
+ - provide all services in a separate module
+ - this will be injected into the app module
+
+
+
+
