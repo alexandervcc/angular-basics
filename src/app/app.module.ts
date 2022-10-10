@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,7 +7,6 @@ import { HeaderComponent } from './header/header.component';
 import { RecipeService } from './services/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { HttpClientModule } from '@angular/common/http';
-import { RecipesModule } from './recipes/Recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
@@ -21,7 +19,6 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
 
-    RecipesModule,
     ShoppingListModule,
     SharedModule,
     CoreModule,

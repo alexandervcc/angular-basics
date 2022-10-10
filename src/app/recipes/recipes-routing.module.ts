@@ -9,7 +9,7 @@ import { RecipesComponent } from './recipes.component';
 
 const routes: Routes = [
   {
-    path: 'recipes',
+    path: '',
     component: RecipesComponent,
     canActivate: [AuthGuard],
     children: [
@@ -34,3 +34,10 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class RecipesRoutingModule {}
+
+/*
+  - to add lazyLoading use the custom router feature path as empty
+    - this will be added into the global router module
+
+
+*/

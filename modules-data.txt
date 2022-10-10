@@ -47,5 +47,15 @@ CORE MODULE
  - this will be injected into the app module
 
 
+LAZY LOADING
+---------------------------------------------------------------------------------
+- concept of OPTIMIZATION
+- in the case that each module is assigned to a specific URL route 
+  - each one will have their own componentes, services, providers
+- when we load the app form the server, the whole app is retrieved to the client
+- lazy loading: when requiring an URL from the server only the module Path code
+  is retrieved
+    - code of other modules, will be downloaded only when those URLs are required
+	  until these are not requires, these will not be downloaded
 
-
+- to use lazy loading, module with routes are required
