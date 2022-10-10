@@ -59,3 +59,19 @@ LAZY LOADING
 	  until these are not requires, these will not be downloaded
 
 - to use lazy loading, module with routes are required
+
+-optimization:
+	- for big files and low internet connection
+	- preload lazy modules
+	
+    - to optimize lazy loading use: preloadingStrategy: PreloadAllModules
+
+
+SERVICES & MODULES
+---------------------------------------------------------------------------------
+
+
+
+
+
+
