@@ -168,6 +168,14 @@ export class AppComponent {
   onDelete(item: string) {
     this.list = this.list.filter((e) => e !== item);
   }
+
+  animationStarted(event) {
+    console.log("e started: ", event);
+  }
+
+  animationEnded(event) {
+    console.log("e end: ", event);
+  }
 }
 
 /*
@@ -202,4 +210,8 @@ export class AppComponent {
   - group(): method to gropu animate() operatios
     - so you dont ahve to wait for an animation to finish before staring the next one
     - the animations gropued happen at the same time
+
+
+  - (@divState.start)="method()": animation when starting
+    - add callbacks to events of animation status: start -> end
 */
