@@ -1,4 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import {
+  async,
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from "@angular/core/testing";
 import { DataService } from "../shared/data.service";
 
 import { UserComponent } from "./user.component";
@@ -70,8 +76,21 @@ describe("UserComponent", () => {
 
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(app.data).toBe('Data');
+      expect(app.data).toBe("Data");
     });
+  }));
+
+  it("should not fetch data sucessfully if not called async", fakeAsync(() => {
+    let fixture = TestBed.createComponent(UserComponent);
+    let app = fixture.debugElement.componentInstance;
+    let dataService = fixture.debugElement.injector.get(DataService);
+    let spy = spyOn(dataService, "getDetails").and.returnValue(
+      Promise.resolve("Data")
+    );
+
+    fixture.detectChanges();
+    tick();
+    expect(app.data).toBe("Data");
   }));
 });
 
@@ -90,6 +109,8 @@ describe("UserComponent", () => {
     - fixture.whenStable();
       - set the code execution for when the async tasks will have finished
 
+  - fakeAsync()
+    - tick(): finish now the async tasks
 
   -spyOn(): get access to classes, to listen to what is executed
     - so we can modify what is happening inside
