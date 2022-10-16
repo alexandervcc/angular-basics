@@ -1,51 +1,21 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { RecipeService } from './services/recipe.service';
-import { DataStorageService } from './shared/data-storage.service';
-import { HttpClientModule } from '@angular/common/http';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
-import { SharedModule } from './shared/shared.module';
-import { CoreModule } from './core.module';
-import { AuthModule } from './auth/auth.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
-    HttpClientModule,
     BrowserModule,
-    AppRoutingModule,
-
-    ShoppingListModule,
-    SharedModule,
-    CoreModule,
-    AuthModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
-  providers: [
-    RecipeService,
-    DataStorageService,
-    
-  ],
-  bootstrap: [AppComponent],
-  //entryComponents: [AlertComponent],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
-
-/*
-  - here the interceptos is added with an special configuration
-
-  - entryComponents:
-    - components that will be created without selectors
-    - this can be omitted if Angular ver>=9
-   
-  - at imports: add the custom modules
-
-  - coreModule: one containing services, MUST be at declarations, not Providers
-
-  - for lazy loading to work, in the app module, remove the import
-    for the modules to use LazyLoading
-
-*/
+export class AppModule { }
