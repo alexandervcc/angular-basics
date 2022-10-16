@@ -19,3 +19,9 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+/*
+  - make sure to add the import: BrowserAnimationsModule
+    - to use animations
+
+*/
