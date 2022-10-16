@@ -31,3 +31,11 @@ describe('App: CompleteGuideFinalWebpack', () => {
     expect(compiled.querySelector('h1').textContent).toContain('app works!');
   }));
 });
+/*
+  - TestBed: configure a testing module
+    - declare which components to have in this testing environment
+
+  - to run tests, run the command:
+    ~ ng test
+    
+*/
