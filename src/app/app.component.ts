@@ -6,7 +6,9 @@ import {
   style,
   transition,
   trigger,
+  group,
 } from "@angular/animations";
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -126,13 +128,21 @@ import {
         ),
       ]),
       transition("* => void", [
-        animate(
-          300,
-          style({
-            transform: "translateX(100px)",
-            opacity: 0,
-          })
-        ),
+        group([
+          animate(
+            300,
+            style({
+              color: "red",
+            })
+          ),
+          animate(
+            800,
+            style({
+              transform: "translateX(100px)",
+              opacity: 0,
+            })
+          ),
+        ]),
       ]),
     ]),
   ],
@@ -188,4 +198,8 @@ export class AppComponent {
 
   -keyframes(): allow to be more precise of styles to occur in some timing
     - to set the time for each phase, use 'offset' as css property
+  
+  - group(): method to gropu animate() operatios
+    - so you dont ahve to wait for an animation to finish before staring the next one
+    - the animations gropued happen at the same time
 */
