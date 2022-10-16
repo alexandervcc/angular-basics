@@ -51,8 +51,43 @@ import {
       ),
       transition("normal => highlighted", animate(300)),
       transition("highlighted => normal", animate(800)),
-      transition("shrunken <=> *", animate(500)),
-      
+      transition("shrunken <=> *", [
+        style({
+          backgroundColor: "orange",
+        }),
+        animate(
+          1000,
+          style({
+            borderRadius: "50px",
+          })
+        ),
+        animate(500),
+      ]),
+    ]),
+    trigger("list1", [
+      state(
+        "in",
+        style({
+          opacity: 1,
+          transform: "translateX(0)",
+        })
+      ),
+      transition("void => *", [
+        //initial style: when appears
+        style({
+          opacity: 0,
+          transform: "translateX(-100px)",
+        }),
+      ]),
+      transition("* => void", [
+        animate(
+          300,
+          style({
+            transform: "translateX(100px)",
+            opacity: 0,
+          })
+        ),
+      ]),
     ]),
   ],
 })
@@ -62,7 +97,6 @@ export class AppComponent {
   list = ["Milk", "Sugar", "Bread"];
 
   onAnimate() {
-    console.log("preseed animation");
     this.state = this.state === "normal" ? "highlighted" : "normal";
     this.wildState = this.wildState === "normal" ? "highlighted" : "normal";
   }
@@ -73,6 +107,10 @@ export class AppComponent {
 
   onAdd(item) {
     this.list.push(item);
+  }
+
+  onDelete(item: string) {
+    this.list = this.list.filter((e) => e !== item);
   }
 }
 
@@ -94,4 +132,12 @@ export class AppComponent {
   
   - to add a transition bidirectiional use <=>
   - to match any state use a wildcard: *
+  - to add an in middle animation in the transition, add style to the animate()
+  - to persist animations middle use an array as second arg to transition()
+
+  - void: from no existing to a state 
+    - use an entering animation, with no state
+    - so use it when the DOM doesnt ahve the element, and you use an animation
+      into adding the element in the DOM
+
 */
