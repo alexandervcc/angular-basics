@@ -1,5 +1,11 @@
 import { Component } from "@angular/core";
-import { state, style, trigger } from "@angular/animations";
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from "@angular/animations";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -19,6 +25,8 @@ import { state, style, trigger } from "@angular/animations";
           transform: "translateX(100px)",
         })
       ),
+      transition("normal => highlighted", animate(300)),
+      transition("highlighted => normal", animate(300)),
     ]),
   ],
 })
@@ -27,7 +35,7 @@ export class AppComponent {
   list = ["Milk", "Sugar", "Bread"];
 
   onAnimate() {
-    console.log("preseed animation")
+    console.log("preseed animation");
     this.state = this.state === "normal" ? "highlighted" : "normal";
   }
 
@@ -45,4 +53,10 @@ export class AppComponent {
         - pass the transition state name
         - also the function style()
           - it receives an {} of CSS styles
+      - next to the state() elements add: transition() function
+        - to tell the transition of CSS states
+        - receives:
+          - string of transition: 'st1 => st2'
+          - animate()
+            - receives a number of ms for the change to occur
 */
