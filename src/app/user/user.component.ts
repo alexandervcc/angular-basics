@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { DataService } from "../shared/data.service";
 import { UserService } from "./user.service";
 
 @Component({
@@ -11,10 +12,15 @@ export class UserComponent implements OnInit {
     name: undefined,
   };
   isLoggedIn = false;
+  data: string;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
     this.user.name = this.userService.getName();
+    this.dataService.getDetails().then((d: string) => (this.data = d));
   }
 }

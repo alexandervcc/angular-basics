@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { DataService } from "../shared/data.service";
 
 import { UserComponent } from "./user.component";
 import { UserService } from "./user.service";
@@ -44,6 +45,34 @@ describe("UserComponent", () => {
     let compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector("p").textContent).toContain(app.user.name);
   });
+
+  it("should not fetch data sucessfully if not called async", () => {
+    let fixture = TestBed.createComponent(UserComponent);
+    let app = fixture.debugElement.componentInstance;
+    let dataService = fixture.debugElement.injector.get(DataService);
+    let spy = spyOn(dataService, "getDetails").and.returnValue(
+      Promise.resolve("Data")
+    );
+
+    fixture.detectChanges();
+
+    //it will fail because is targeting to the state before the data arrives
+    expect(app.data).toBe(undefined);
+  });
+
+  it("should not fetch data sucessfully if not called async", async(() => {
+    let fixture = TestBed.createComponent(UserComponent);
+    let app = fixture.debugElement.componentInstance;
+    let dataService = fixture.debugElement.injector.get(DataService);
+    let spy = spyOn(dataService, "getDetails").and.returnValue(
+      Promise.resolve("Data")
+    );
+
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(app.data).toBe('Data');
+    });
+  }));
 });
 
 /*
@@ -54,4 +83,16 @@ describe("UserComponent", () => {
   
   -to detect update of properties
     - fixture.detectChanges();
+
+  -async: functionality to mock async calls such as http
+    - creates an async testing environment
+    - assures to handle as if the async part takes place
+    - fixture.whenStable();
+      - set the code execution for when the async tasks will have finished
+
+
+  -spyOn(): get access to classes, to listen to what is executed
+    - so we can modify what is happening inside
+
+
 */
